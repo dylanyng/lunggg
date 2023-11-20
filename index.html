@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunggg - Guided Breathing</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <img id="svgLogo" src="./assets/logo.svg" alt="lunggg logo">
+        <div>
+            <h1>lung</h1><h1>g</h1><h1>g</h1>
+        </div>
+    </header>
+    <section>
+        <!-- Animation -->
+        <div class="animationDisplay">
+            <div class="watch-face">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>    
+        </div>
+        
+        <!-- Informational panel -->
+        <p class="breath-instructions" id="breathINS">press start</p>
+        <p id="breath-count" class="breath-count">0</p>
+        <p id="breath-timer">0:00:00</p>
+
+        <!-- Buttons -->
+        <div id="main-buttons">
+            <input id="start-button" name="start" type="button" value="start">
+            <input id="skip-button" class="skip-button" name="skip" type="button" value="skip" disabled>
+        </div>
+        <input id="reset-button" name="reset-button" type="button" value="reset">
+    </section>
+
+    <footer>
+        <nav><a href="https://github.com/dylanyng">github</a></nav>
+        <a id="open-overlay-button">instructions</a>
+        <a id="theme-toggle">theme</a>
+    </footer>
+
+    <!-- Informational Overlay -->
+    <div id="overlay" style="display: none;">
+        <div class="overlay-content">
+            <h2>Welcome</h2>
+            <div>
+                <h3>Instructions</h3>
+                <p>Three rounds of the following:</p>
+                <ol>
+                    <li>25 deep breaths.</li>
+                    <li>Full exhale + hold your breath.</li>
+                    <li>Full inhale + hold your breath for 15 seconds.</li>
+                </ol>
+            </div>
+            <div>
+                <h3>Warning</h3>
+                <p>Please ensure you are sitting or laying down in a safe environment before practicing.</p>
+                <p>If you feel light headed, stop.</p>
+            </div>
+            <button id="close-overlay-button">Understood</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
