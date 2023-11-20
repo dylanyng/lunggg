@@ -27,7 +27,7 @@ let iterationCount = 0;
 let exerciseRound = 0;
 
 // Silly variable to keep track for breath instructions REFINE
-let nummy = 0;
+let instructionIndex = 0;
 
 // Page theme
 // Apply the saved theme on page load
@@ -104,10 +104,9 @@ function stopInstructionTimer() {
 }
 
 // Display the instructions
-// Rewrite this and make it work right, try to not rely on 'nummy'
 function displayInstructions() {
-  nummy++;
-  if (nummy % 2 === 0) {
+  instructionIndex++;
+  if (instructionIndex % 2 === 0) {
     inhaleInstructions();
   } else {
     exhaleInstructions();
@@ -236,7 +235,7 @@ function resetRound() {
   stopTimer();
   clearIterationCount();
   startAnimation();
-  nummy = 0;
+  instructionIndex = 0;
 }
 
 // Start breathing again after XX amount of time
