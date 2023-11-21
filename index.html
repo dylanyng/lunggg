@@ -42,14 +42,14 @@
 
     <footer>
         <nav><a href="https://github.com/dylanyng">github</a></nav>
-        <a id="open-overlay-button">instructions</a>
-        <a id="theme-toggle">theme</a>
+        <a id="open-overlay-button" aria-label="Open Instructions">instructions</a>
+        <a id="theme-toggle" aria-label="Toggle Theme">theme</a>
     </footer>
 
     <!-- Instructions & Warning Overlay -->
-    <div id="overlay" style="display: none;">
+    <div id="overlay" role="dialog" aria-labelledby="overlayTitle" aria-hidden="true"  style="display: none;">
         <div class="overlay-content">
-            <h2>Welcome</h2>
+            <h2 id="overlayTitle">Welcome</h2>
             <div>
                 <h3>Instructions</h3>
                 <p>Three rounds of the following:</p>

@@ -25,8 +25,6 @@ let countdownInterval;
 let timeElapsed;
 let iterationCount = 0;
 let exerciseRound = 0;
-
-// Silly variable to keep track for breath instructions REFINE
 let instructionIndex = 0;
 
 // Page theme
@@ -307,6 +305,7 @@ function showOverlay() {
 
 function hideOverlay() {
   document.getElementById('overlay').style.display = 'none';
+  document.getElementById('overlay').setAttribute('aria-hidden', 'true');
   document.cookie = "overlayShown=true; max-age=86400"; // Expires after 1 day
 }
 
