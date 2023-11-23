@@ -7,6 +7,7 @@ const animationDurationMS = getAnimationDuration(animatedElement);
 // Front end variables
 const breathCounter = document.getElementsByClassName('breath-count')[0];
 const timerDisplay = document.getElementById('breath-timer');
+const mainButtons = document.getElementById('main-buttons');
 const startButton = document.getElementById('start-button');
 const skipButton = document.getElementById('skip-button');
 const resetButton = document.getElementById('reset-button');
@@ -45,12 +46,35 @@ themeToggleButton.addEventListener('click', function() {
   }
 });
 
+// Toggle visibility/state of an element
+function toggleElementState(element, action) {
+  if (!element) return;
+
+  switch (action) {
+    case 'enable':
+      element.removeAttribute('disabled');
+      break;
+    case 'disable':
+      element.setAttribute('disabled', '');
+      break;
+    case 'show':
+      element.style.display = 'inline'; // 'block', 'inline', 'flex', etc.
+      break;
+    case 'displayNone':
+      element.style.display = 'none';
+      break;
+    case 'hidden':
+      element.style.visibility = 'hidden';
+      break;
+    default:
+      console.error('Invalid action specified');
+  }
+}
 
 // Animation
 function startAnimation() {
-  startButton.style.display = 'none';
-  skipButton.style.display = 'inline'
-  showBreathCount();
+  toggleElementState(startButton, 'displayNone');
+  toggleElementState(skipButton, 'show');
   inhaleInstructions();
   startInstructionTimer();
   exerciseRound++;
@@ -111,10 +135,6 @@ function displayInstructions() {
   }
 }
 
-function hideInstructions() {
-  document.getElementById('breathINS').style.visibility = 'hidden';
-}
-
 function inhaleInstructions() {
   document.getElementById('breathINS').innerText = 'breathe in';
 }
@@ -139,7 +159,6 @@ animatedElement.addEventListener('animationiteration', () => {
   if (iterationCount == 2) {
     pauseAnimation();
     stopInstructionTimer();
-    
     startTimer();
     exhaleHoldInstructions();
   }
@@ -147,18 +166,9 @@ animatedElement.addEventListener('animationiteration', () => {
 
 
 // Breath Counter
-function showBreathCount() {
-  document.getElementById('breath-count').style.visibility = 'visible';
-}
-
-function hideBreathCount() {
-  document.getElementById('breath-count').style.visibility = 'hidden';
-}
-
 function clearIterationCount() {
   iterationCount = 0;
   breathCounter.innerHTML = iterationCount;
-  hideBreathCount();
 }
 
 
@@ -187,20 +197,11 @@ function setInhaleHoldTime() {
 function startTimer() {
   startTime = Date.now();
   timerInterval = setInterval(updateTimer, 10);
-  showTimer();
 }
 
 function stopTimer() {
   inhaleHoldInstructions();
   clearInterval(timerInterval);
-}
-
-function showTimer() {
-  document.getElementById('breath-timer').style.visibility = 'visible';
-}
-
-function hideTimer() {
-  document.getElementById('breath-timer').style.visibility = 'hidden';
 }
 
 function formatTime(duration) {
@@ -238,37 +239,35 @@ function resetRound() {
 
 // Start breathing again after XX amount of time
 function roundAutomation() {
-  enableSkipButton();
+  toggleElementState(skipButton, 'enable');
   if (exerciseRound === 1 && timeElapsed === '0:02:00') {
-    disableSkipButton();
+    toggleElementState(skipButton, 'disable');
     stopTimer();
     startCountdownTimer();
   } else if (exerciseRound === 2 && timeElapsed === '0:04:00') {
-    disableSkipButton();
+    toggleElementState(skipButton, 'disable');
     setInhaleHoldTime();
     stopTimer();
     startCountdownTimer();
   } else if (exerciseRound === 3 && timeElapsed === '0:10:00') {
-    disableSkipButton();
+    toggleElementState(skipButton, 'disable');
     setInhaleHoldTime();
     stopTimer();
     startCountdownTimer();
   }
 }
 
-
 // Stop & Reset Button (refresh page)
 function refreshPage() {
   location.reload();
 }
 
-
 // Completed function
 function completed() {
   clearInterval(countdownInterval);
-  document.getElementById('main-buttons').style.visibility = 'hidden';
-  hideBreathCount();
-  hideTimer();
+  toggleElementState(mainButtons, 'hidden');
+  toggleElementState(breathCounter, 'hidden');
+  toggleElementState(timerDisplay, 'hidden');
   document.getElementById('breathINS').innerText = 'complete!';
 }
 
@@ -283,13 +282,6 @@ function skipBreathHold() {
     stopTimer();
     startCountdownTimer();
   }
-}
-function enableSkipButton() {
-  skipButton.removeAttribute('disabled');
-}
-function disableSkipButton() {
-  console.log('ran');
-  skipButton.setAttribute('disabled', '');
 }
 
 // Overlay
