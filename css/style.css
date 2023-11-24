@@ -221,6 +221,13 @@ footer a:hover {
   
 }
 
+/* @media screen and (min-width: 950px) {
+  body > section {
+    display: flex;
+    flex-direction: row;
+  }
+} */
+
 /*************/
 /* ANIMATION */
 /*************/

@@ -15,6 +15,22 @@ const themeToggleButton = document.getElementById('theme-toggle');
 const openOverlayButton = document.getElementById('open-overlay-button');
 const closeOverlayButton = document.getElementById('close-overlay-button');
 
+// Length of time for each step
+let exhaleHoldTimes = {
+  roundOne: '0:01:00',
+  roundTwo: '0:02:00',
+  roundThree: '0:03:00',
+};
+
+const breathsPerRound = 1;
+
+function setInhaleHoldTime() {
+  inhaleHoldTime = 4;
+}
+
+// Run on page load
+setInhaleHoldTime();
+
 // Local storage
 const currentTheme = localStorage.getItem('theme');
 
@@ -24,7 +40,7 @@ let instructionTimerInterval;
 let timerInterval;
 let countdownInterval;
 let timeElapsed;
-let iterationCount = 0;
+let numberOfBreaths = 0;
 let exerciseRound = 0;
 let instructionIndex = 0;
 
@@ -114,7 +130,7 @@ function getAnimationDuration(element) {
   return duration;
 }
 
-// Timer that starts when animation begins
+// Timer: starts when animation begins
 function startInstructionTimer() {
   
   startTime = Date.now();
@@ -151,12 +167,12 @@ function inhaleHoldInstructions() {
   document.getElementById('breathINS').innerText = 'inhale and hold';
 }
 
-// At X breath, stop animation AND start timer
+// At X nunberOfBreaths: stop animation AND start timer
 animatedElement.addEventListener('animationiteration', () => {
-  iterationCount++;
-  breathCounter.innerHTML = iterationCount;
+  numberOfBreaths++;
+  breathCounter.innerHTML = numberOfBreaths;
 
-  if (iterationCount == 2) {
+  if (numberOfBreaths === breathsPerRound) {
     pauseAnimation();
     stopInstructionTimer();
     startTimer();
@@ -166,9 +182,9 @@ animatedElement.addEventListener('animationiteration', () => {
 
 
 // Breath Counter
-function clearIterationCount() {
-  iterationCount = 0;
-  breathCounter.innerHTML = iterationCount;
+function clearnumberOfBreaths() {
+  numberOfBreaths = 0;
+  breathCounter.innerHTML = numberOfBreaths;
 }
 
 
@@ -188,10 +204,6 @@ function countdownTimer() {
     completed();
   }
   timerDisplay.innerText = inhaleHoldTime;
-}
-
-function setInhaleHoldTime() {
-  inhaleHoldTime = 3
 }
 
 function startTimer() {
@@ -232,7 +244,7 @@ function updateTimer() {
 // Breath rounds
 function resetRound() {
   stopTimer();
-  clearIterationCount();
+  clearnumberOfBreaths();
   startAnimation();
   instructionIndex = 0;
 }
@@ -240,16 +252,16 @@ function resetRound() {
 // Start breathing again after XX amount of time
 function roundAutomation() {
   toggleElementState(skipButton, 'enable');
-  if (exerciseRound === 1 && timeElapsed === '0:02:00') {
+  if (exerciseRound === 1 && timeElapsed === exhaleHoldTimes.roundOne) {
     toggleElementState(skipButton, 'disable');
     stopTimer();
     startCountdownTimer();
-  } else if (exerciseRound === 2 && timeElapsed === '0:04:00') {
+  } else if (exerciseRound === 2 && timeElapsed === exhaleHoldTimes.roundTwo) {
     toggleElementState(skipButton, 'disable');
     setInhaleHoldTime();
     stopTimer();
     startCountdownTimer();
-  } else if (exerciseRound === 3 && timeElapsed === '0:10:00') {
+  } else if (exerciseRound === 3 && timeElapsed === exhaleHoldTimes.roundThree) {
     toggleElementState(skipButton, 'disable');
     setInhaleHoldTime();
     stopTimer();
@@ -303,7 +315,6 @@ function hideOverlay() {
 
 
 // Event listeners
-setInhaleHoldTime(); // runs on page load
 openOverlayButton.onclick = showOverlay;
 closeOverlayButton.onclick = hideOverlay;
 startButton.onclick = startAnimation;
