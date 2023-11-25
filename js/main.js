@@ -24,7 +24,7 @@ let exhaleHoldTimes = {
   roundThree: '1:30:00',
 };
 
-const breathsPerRound = 1;
+const breathsPerRound = 30;
 
 function setInhaleHoldTime() {
   inhaleHoldTime = 16;
