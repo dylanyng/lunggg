@@ -15,17 +15,19 @@ const themeToggleButton = document.getElementById('theme-toggle');
 const openOverlayButton = document.getElementById('open-overlay-button');
 const closeOverlayButton = document.getElementById('close-overlay-button');
 
-// Length of time for each step
+//////////////////////
+// Time for each step
+//////////////////////
 let exhaleHoldTimes = {
-  roundOne: '0:01:00',
-  roundTwo: '0:02:00',
-  roundThree: '0:03:00',
+  roundOne: '0:60:00',
+  roundTwo: '1:15:00',
+  roundThree: '1:30:00',
 };
 
 const breathsPerRound = 1;
 
 function setInhaleHoldTime() {
-  inhaleHoldTime = 4;
+  inhaleHoldTime = 16;
 }
 
 // Run on page load
@@ -152,19 +154,19 @@ function displayInstructions() {
 }
 
 function inhaleInstructions() {
-  document.getElementById('breathINS').innerText = 'breathe in';
+  document.getElementById('breath-instructions').innerText = 'breathe in';
 }
 
 function exhaleInstructions() {
-  document.getElementById('breathINS').innerText = 'breathe out';
+  document.getElementById('breath-instructions').innerText = 'breathe out';
 }
 
 function exhaleHoldInstructions() {
-  document.getElementById('breathINS').innerText = 'exhale and hold';
+  document.getElementById('breath-instructions').innerText = 'exhale and hold';
 }
 
 function inhaleHoldInstructions() {
-  document.getElementById('breathINS').innerText = 'inhale and hold';
+  document.getElementById('breath-instructions').innerText = 'inhale and hold';
 }
 
 // At X nunberOfBreaths: stop animation AND start timer
@@ -280,7 +282,7 @@ function completed() {
   toggleElementState(mainButtons, 'hidden');
   toggleElementState(breathCounter, 'hidden');
   toggleElementState(timerDisplay, 'hidden');
-  document.getElementById('breathINS').innerText = 'complete!';
+  document.getElementById('breath-instructions').innerText = 'complete!';
 }
 
 // Skip button

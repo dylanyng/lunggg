@@ -9,27 +9,29 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    
     <header>
         <img id="svgLogo" src="./assets/logo.svg" alt="lunggg logo">
         <div>
             <h1>lung</h1><h1>g</h1><h1>g</h1>
         </div>
     </header>
+
+    <!-- Animation -->
+    <div class="animationDisplay">
+        <div class="watch-face">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>    
+    </div>
+
     <section>
-        <!-- Animation -->
-        <div class="animationDisplay">
-            <div class="watch-face">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-            </div>    
-        </div>
-        
         <!-- Informational panel -->
-        <p class="breath-instructions" id="breathINS">press start</p>
+        <p id="breath-instructions">press start</p>
         <p id="breath-count" class="breath-count">0</p>
         <p id="breath-timer">0:00:00</p>
 
@@ -43,7 +45,7 @@
 
     <footer>
         <a id="theme-toggle" aria-label="Toggle Theme"><i class="fa-solid fa-circle-half-stroke"></i></a>
-        <nav><a href="https://github.com/dylanyng/lunggg"><i class="fa-brands fa-github-alt"></i></a></nav>
+        <a href="https://github.com/dylanyng/lunggg"><i class="fa-brands fa-github-alt"></i></a>
         <a id="open-overlay-button" aria-label="Open Instructions"><i class="fa-solid fa-triangle-exclamation"></i></a>
     </footer>
 
@@ -62,8 +64,13 @@
             </div>
             <div>
                 <h3>Warning</h3>
-                <p>Please ensure you are sitting or laying down in a safe environment before practicing.</p>
+                <p>Please ensure you are sitting or laying down in a safe environment before practicing. Do not practice any breathing exercises in a place or posisiton that could cause harm should you become light headed or faint.</p>
                 <p>If you feel light headed, stop.</p>
+            </div>
+            <div>
+                <h4>Info</h4>
+                <span class="overlay-small">Lunggg.com is an independent tool provided for informational and educational purposes only. It is not affiliated with, endorsed by, or connected to any specific groups, organizations, or experts. This application should not be considered a substitute for professional medical treatment. The use of this application is solely at your own risk.</span>
+                <b><span class="overlay-small">Animation sourced from <a href="https://css-tricks.com/recreating-apple-watch-breathe-app-animation/">Geoff Graham</a></span></b>
             </div>
             <button id="close-overlay-button">Understood</button>
         </div>
